@@ -1,0 +1,14 @@
+SP500_URL = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+horizon = "10y"
+time = "1d"
+threshold = 0.95
+method = "log"
+minimum_returns = 0
+rf = 0.0367 / 252
+window = 252
+rebalance = 6
+n_asset = 10
+gamma = [1, 5, 10, 25, 50, 100]
+max_weight = 0.15
+min_weight = - 0.15
+cost_rate = 0.005
