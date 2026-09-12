@@ -1,4 +1,7 @@
 # Virtual environment
+venv/
+env/
+.venv/
 bin/
 lib/
 include/
@@ -19,8 +22,5 @@ __pycache__/
 # Jupyter
 .ipynb_checkpoints/
 
-# Large generated results
-results/
-
 # Generated results
-# results/
+results/
