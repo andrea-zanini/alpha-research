@@ -32,7 +32,6 @@ for date in signal.index.unique():
 correlation = pd.DataFrame(correlation)
 correlation["date"] = pd.to_datetime(correlation["date"])
 correlation["year"] = correlation["date"].dt.year
-print(correlation)
 top_20 = pd.DataFrame(top_20)
 top_20["date"] = pd.to_datetime(top_20["date"])
 top_20["year"] = top_20["date"].dt.year
