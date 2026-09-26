@@ -34,7 +34,7 @@ def portfolio_metrics(return_portfolio: dict, weights_portfolio: dict, market_po
 
     return net_return, turnover, sharpe_annual, sharpe_rolling, drawdown, informatio_ratio, effective_number
 
-def equal_weights_metrics(return_portfolio: dict, weights_portfolio: dict, market_portfolio_returns: pd.Series):
+def equal_weights_metrics(return_portfolio: pd.Series, weights_portfolio: pd.DataFrame, market_portfolio_returns: pd.Series):
         
     turnover = 0.5 * weights_portfolio.diff().abs().sum(axis = 1).fillna(0)
     turnover.name = "Turnover"
