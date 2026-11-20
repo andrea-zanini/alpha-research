@@ -21,7 +21,7 @@ def factors():
     for asset in prices:
 
         standardizzator = returns_daily[asset].rolling(window_portofolio).std()
-        target = returns_daily[asset].rolling(window_portofolio).sum().shift(-window_portofolio) / standardizzator
+        target = returns_daily[asset].rolling(window_momentum).sum().shift(-window_momentum) / standardizzator
         
         def ehlers_roofing(returns: pd.Series, low = window_mean_reversion):
             

@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 import cvxpy as cp
 from sklearn.covariance import ledoit_wolf
-from config import method, max_weight, min_weight, max_turnover, gamma, volatility_annual, cost_rate
+from config import method, max_weight, min_weight, max_turnover, gamma, volatility_annual, cost_rate_portfolio
 
 BASE_DIR = Path(__file__).parent.parent
 info_path = BASE_DIR / "results" / "info"
@@ -58,7 +58,7 @@ def portfolio(signal: np.ndarray, returns: np.ndarray, previous_weights: np.ndar
     l = np.linalg.cholesky(sigma).T
     score = signal @ w
     risk = cp.quad_form(w, sigma)
-    transaction_cost = cost_rate * cp.norm1(w - previous_weights)
+    transaction_cost = cost_rate_portfolio * cp.norm1(w - previous_weights)
     
     objective = cp.Maximize(score - gamma * risk - transaction_cost)
     constraints = [cp.sum(w) == 0, cp.sum(cp.abs(w)) <= 2, w >= min_weight, w <= max_weight, w @ beta == 0, 

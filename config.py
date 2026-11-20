@@ -20,4 +20,5 @@ min_weight = -0.02
 max_turnover = 0.3
 gamma = 3
 volatility_annual = 0.1
+cost_rate_portfolio = 0.0015
 cost_rate = 0.003

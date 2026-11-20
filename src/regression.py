@@ -6,7 +6,7 @@ import xgboost as xg
 from sklearn.linear_model import SGDRegressor
 from sklearn.model_selection import TimeSeriesSplit
 from sklearn.model_selection import GridSearchCV
-from config import features_drop, features_linear_model, features_non_linear_model
+from config import features_drop, features_linear_model, features_non_linear_model, window_mean_reversion
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 factors_path = BASE_DIR / "results" / "factors"
@@ -31,7 +31,7 @@ def linear_signal():
     
     for time in range(grid_train_length, len(dates), step_size):
         
-        train = dates[:time]
+        train = dates[:time - window_mean_reversion]
         test = dates[time: time + step_size]
         
         x_train = factors.loc[train]
@@ -95,7 +95,7 @@ def non_linear_signal():
     
     for time in range(grid_train_length, len(dates), step_size):
         
-        data_train = dates[:time]
+        data_train = dates[:time - window_mean_reversion]
         test = dates[time: time + step_size]
         
         len_validation = int(len(data_train) * 0.15)
