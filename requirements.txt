@@ -76,4 +76,5 @@ typing_extensions==4.15.0
 urllib3==2.7.0
 wcwidth==0.9.1
 websockets==16.0
+xgboost==3.4.1
 yfinance==1.4.1
