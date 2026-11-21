@@ -37,6 +37,17 @@ def feature_correlation(factors: pd.DataFrame):
 
 def feature_significant(target: pd.Series, factors: pd.DataFrame):
     
+    common_index = factors.index.get_level_values(level = "Date").unique().intersection(target.index.get_level_values(level = "Date").unique())
+    factors = factors.loc[common_index]
+    target = target.loc[common_index]
+    
+    dates = factors.index.get_level_values(level = "Date").unique()
+    train_length = int(len(dates) * 0.4)
+    train = dates[:train_length]
+    
+    factors = factors.loc[train]
+    target = target.loc[train]
+    
     dataframe = pd.concat([factors, target], axis = 1)
     ic_daily = dataframe.groupby(level = "Date").apply(lambda x: x.corr(method = "spearman")["Target"],).drop(columns = ["Target", "Market Momentum", "Market Volatility"])
     
